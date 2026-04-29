@@ -9,7 +9,7 @@ class PsikopompApp extends StatelessWidget {
     const PsikopompApp({super.key});
 
     @override
-    Widget build(BuildContext) {
+    Widget build(BuildContext context) {
         return MaterialApp(
             title : 'Psikopomp',
             debugShowCheckedModeBanner : false,
@@ -35,21 +35,22 @@ class MainScreen extends StatelessWidget {
                     Container(
                         decoration: const BoxDecoration(
                             gradient:RadialGradient(
-                                center: Alignment(0.0, 0,5),
+                                center: Alignment(0.0, 0.5),
                                 radius: 0.8,
                                 colors: [
                                     Color(0x40534AB7),
                                     Color(0x001a1630),
-                                ]
-                            )
-                        )
-                    )
+                                ],
+                            ),
+                        ),
+                    ),
+                    ..._buildStars(),
                     Center(
                         child: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
                                 const PsikopompCharacter(
-                                    mood: 'Bahagia',
+                                    mood: 'hungry',
                                     size: 220,
                                 ),
                                 const SizedBox(height: 24),
@@ -95,7 +96,7 @@ class MainScreen extends StatelessWidget {
                     height: s[2],
                     decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: Color.white.withOpacity(s[3]),
+                        color: Colors.white.withValues(alpha: s[3]),
                     ),
                 ),
             ),

@@ -1,12 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 import 'widgets/psikopomp_character.dart';
 import 'dart:async';
 import 'models/pet_state.dart';
 import 'screens/shop_screen.dart';
+import 'screens/quiz_screen.dart';
 import 'widgets/hunger_bar.dart';
 
-void main() {
-    runApp(const PsikopompApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  try {
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+  } catch (e) {
+    // Firebase belum dikonfigurasi — app tetap jalan tanpa persistensi
+    // ignore: avoid_print
+    print('[Firebase] Init failed (belum dikonfigurasi?): $e');
+  }
+  runApp(const PsikopompApp());
 }
 
 class PsikopompApp extends StatelessWidget {
@@ -189,46 +202,91 @@ class _MainScreenState extends State<MainScreen> {
  
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 24),
-                  child: SizedBox(
-                    width: double.infinity,
-                    child: GestureDetector(
-                      onTap: () => ShopScreen.show(context, _petState),
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(vertical: 16),
-                        decoration: BoxDecoration(
-                          gradient: const LinearGradient(
-                            colors: [Color(0xFF3D3580), Color(0xFF534AB7)],
-                          ),
-                          borderRadius: BorderRadius.circular(16),
-                          boxShadow: [
-                            BoxShadow(
-                              color: const Color(0xFF534AB7).withValues(alpha: 0.35),
-                              blurRadius: 16,
-                              offset: const Offset(0, 4),
-                            ),
-                          ],
-                        ),
-                        child: const Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text('🏪', style: TextStyle(fontSize: 18)),
-                            SizedBox(width: 8),
-                            Text(
-                              'Toko Jiwa',
-                              style: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.white,
-                                letterSpacing: 1,
+                  child: Row(
+                    children: [
+                      // Tombol Kuis
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: () => QuizScreen.show(context, _petState),
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(vertical: 16),
+                            decoration: BoxDecoration(
+                              gradient: const LinearGradient(
+                                colors: [Color(0xFF1A3A2A), Color(0xFF1D9E75)],
                               ),
+                              borderRadius: BorderRadius.circular(16),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: const Color(0xFF1D9E75).withValues(alpha: 0.35),
+                                  blurRadius: 16,
+                                  offset: const Offset(0, 4),
+                                ),
+                              ],
                             ),
-                          ],
+                            child: const Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text('🎯', style: TextStyle(fontSize: 18)),
+                                SizedBox(width: 8),
+                                Text(
+                                  'Kuis',
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.white,
+                                    letterSpacing: 1,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
                       ),
-                    ),
+
+                      const SizedBox(width: 12),
+
+                      // Tombol Toko
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: () => ShopScreen.show(context, _petState),
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(vertical: 16),
+                            decoration: BoxDecoration(
+                              gradient: const LinearGradient(
+                                colors: [Color(0xFF3D3580), Color(0xFF534AB7)],
+                              ),
+                              borderRadius: BorderRadius.circular(16),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: const Color(0xFF534AB7).withValues(alpha: 0.35),
+                                  blurRadius: 16,
+                                  offset: const Offset(0, 4),
+                                ),
+                              ],
+                            ),
+                            child: const Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text('🏪', style: TextStyle(fontSize: 18)),
+                                SizedBox(width: 8),
+                                Text(
+                                  'Toko',
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.white,
+                                    letterSpacing: 1,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
- 
+
                 const SizedBox(height: 24),
               ],
             ),

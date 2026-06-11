@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "554226060927",
+    "project_id": "psikopomp-c2d50",
+    "storage_bucket": "psikopomp-c2d50.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:554226060927:android:9bab9932b0de95f151394a",
+        "android_client_info": {
+          "package_name": "com.example.psikopomp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDgejYQuD3mH1fARX2e-h7yQsuNXvdCWD4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

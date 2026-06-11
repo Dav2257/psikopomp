@@ -15,8 +15,6 @@ void main() async {
       options: DefaultFirebaseOptions.currentPlatform,
     );
   } catch (e) {
-    // Firebase belum dikonfigurasi — app tetap jalan tanpa persistensi
-    // ignore: avoid_print
     print('[Firebase] Init failed (belum dikonfigurasi?): $e');
   }
   runApp(const PsikopompApp());
@@ -157,7 +155,6 @@ class _MainScreenState extends State<MainScreen> {
                   child: Stack(
                     alignment: Alignment.center,
                     children: [
-                      // Karakter — mood berubah otomatis sesuai hunger
                       ListenableBuilder(
                         listenable: _petState,
                         builder: (_, __) => PsikopompCharacter(
@@ -204,7 +201,6 @@ class _MainScreenState extends State<MainScreen> {
                   padding: const EdgeInsets.symmetric(horizontal: 24),
                   child: Row(
                     children: [
-                      // Tombol Kuis
                       Expanded(
                         child: GestureDetector(
                           onTap: () => QuizScreen.show(context, _petState),

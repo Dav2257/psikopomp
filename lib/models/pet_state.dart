@@ -76,7 +76,6 @@ class PetState extends ChangeNotifier {
     _loadFromFirestore();
   }
 
-  /// Muat data dari Firestore saat pertama kali dibuat
   Future<void> _loadFromFirestore() async {
     final data = await FirestoreService.loadPetState();
     if (data != null) {
@@ -87,7 +86,6 @@ class PetState extends ChangeNotifier {
     notifyListeners();
   }
 
-  /// Simpan ke Firestore setiap kali state berubah
   void _saveToFirestore() {
     FirestoreService.savePetState(hunger: _hunger, coins: _coins);
   }

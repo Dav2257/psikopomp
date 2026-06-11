@@ -1,13 +1,3 @@
-// File ini AKAN di-overwrite otomatis oleh perintah:
-//   flutterfire configure
-//
-// Setelah kamu:
-// 1. Buat project di https://console.firebase.google.com
-// 2. Jalankan: flutterfire configure
-//
-// File ini adalah PLACEHOLDER sementara agar app bisa compile.
-// Firestore TIDAK akan berfungsi sampai file ini di-replace dengan yang asli.
-
 import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 import 'package:flutter/foundation.dart'
     show defaultTargetPlatform, kIsWeb, TargetPlatform;
@@ -38,7 +28,6 @@ class DefaultFirebaseOptions {
     }
   }
 
-  // ⚠️ GANTI SEMUA NILAI DI BAWAH INI dengan output dari `flutterfire configure`
 
   static const FirebaseOptions web = FirebaseOptions(
     apiKey: 'AIzaSyCx3Mms473luQILArXbW-_fZDBOD-4G0ko',
